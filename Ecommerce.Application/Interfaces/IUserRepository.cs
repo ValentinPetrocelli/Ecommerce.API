@@ -1,6 +1,10 @@
-﻿namespace Ecommerce.Application.Interfaces
+﻿using Ecommerce.Domain.Entities;
+
+namespace Ecommerce.Application.Interfaces
 {
-    internal class IUserRepository
+    public interface IUserRepository
     {
+        Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken);
+        void Add(User user);
     }
 }

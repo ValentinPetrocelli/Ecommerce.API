@@ -1,6 +1,9 @@
-﻿namespace Ecommerce.Application.Interfaces
+﻿using Ecommerce.Domain.Entities;
+
+namespace Ecommerce.Application.Interfaces
 {
-    internal class IJwtService
+    public interface IJwtService
     {
+        (string Token, DateTime Expiration) GenerateToken(User user);
     }
 }
