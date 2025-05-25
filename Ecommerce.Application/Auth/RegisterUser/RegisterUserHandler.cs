@@ -17,7 +17,7 @@ namespace Ecommerce.Application.Auth.RegisterUser
         {
             var existingUser = await _unitOfWork.Users.GetByEmailAsync(request.Email, cancellationToken);
             if (existingUser is not null)
-                throw new ApplicationException("User's email not exists");
+                throw new ApplicationException("The user's email does not exist");
 
             var hash = BCrypt.Net.BCrypt.HashPassword(request.Password);
             var user = new User(request.Email, hash);

@@ -11,13 +11,14 @@ IServiceCollection services = builder.Services;
 services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(config.GetConnectionString("DefaultConnection")));
 
+ProblemDetailsConfiguration.AddProblemDetails(services);
 JwtConfiguration.AddAuthentication(config, services);
 CorsConfiguration.AddCors(services);
-
 ServicesConfiguration.AddApplicationServices(services);
 ServicesConfiguration.AddInfrastructureServices(services);
-
 SwaggerConfiguration.AddSwagger(services);
+
+services.AddControllers();
 
 var app = builder.Build();
 

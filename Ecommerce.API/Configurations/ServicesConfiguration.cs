@@ -1,4 +1,5 @@
-﻿using Ecommerce.Application.Interfaces;
+﻿using Ecommerce.Application.Auth.RegisterUser;
+using Ecommerce.Application.Interfaces;
 using Ecommerce.Infrastructure.Persistence;
 using Ecommerce.Infrastructure.Services;
 using MediatR;
@@ -10,8 +11,8 @@ namespace Ecommerce.API.Configurations
     {
         public static void AddApplicationServices(this IServiceCollection services)
         {
-            services.AddMediatR(cfg => 
-                cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+            services.AddMediatR(cfg =>
+                cfg.RegisterServicesFromAssembly(typeof(RegisterUserCommand).Assembly));
         }
 
         public static void AddInfrastructureServices(this IServiceCollection services)
