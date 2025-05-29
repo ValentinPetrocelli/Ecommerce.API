@@ -17,13 +17,13 @@ namespace Ecommerce.Application.Auth.LoginUser
         public async Task<LoginUserResponse> Handle(LoginUserCommand request, CancellationToken cancellationToken)
         {
             var user = await _unitOfWork.Users.GetByEmailAsync(request.Email, cancellationToken)
-                       ?? throw new ApplicationException("Invalid credentials");
+                       ?? throw new ApplicationException("The user does not exist, please register");
 
             if (!BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
-                throw new ApplicationException("Invalid credentials");
+                throw new ApplicationException("Incorrect email or password");
 
             var (token, expiration) = _jwtService.GenerateToken(user);
-            return new LoginUserResponse(token, expiration);
+            return new LoginUserResponse(token, expiration  );
         }
     }
 }

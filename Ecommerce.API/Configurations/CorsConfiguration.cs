@@ -4,11 +4,16 @@
     {
         public static void AddCors(IServiceCollection services)
         {
+            string allowedOrigin = "http://localhost:5173";
+
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowFrontend", policy =>
                 {
-                    policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                    policy.WithOrigins(allowedOrigin)
+                          .AllowAnyHeader()
+                          .AllowAnyMethod()
+                          .AllowCredentials();
                 });
             });
         }

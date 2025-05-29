@@ -14,7 +14,7 @@ namespace Ecommerce.API.Configurations
                     Title = "Application error",
                     Detail = ex.Message,
                     Status = StatusCodes.Status400BadRequest
-                });
+                }); 
 
                 options.Map<UnauthorizedAccessException>(ex => new ProblemDetails
                 {
